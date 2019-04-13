@@ -12,7 +12,10 @@ config(server)
 healthCheckRoutes(server)
 taskRoutes(server)
 
-server.listen(8080, 'localhost', () => {
-    console.log('Server running at http://localhost:8080')
+const port = process.env.PORT || 8080
+const host = process.env.HOST || 'localhost'
+
+server.listen(port, host, () => {
+    console.log(`Server running at http://${host}:${port}`)
     console.log('Use CTRL+C to stop it')
 })

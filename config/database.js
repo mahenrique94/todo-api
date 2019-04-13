@@ -1,6 +1,13 @@
 const Sequelize = require('sequelize')
 
-const sequelize = new Sequelize('mysql://root:root@127.0.0.1:3306/todo')
+const database = process.env.DB_DATABASE || 'todo'
+const dialect = process.env.DB_DIALECT || 'mysql'
+const host = process.env.DB_HOST || '127.0.0.1'
+const password = process.env.DB_PASSWORD || 'root'
+const port = process.env.DB_PORT || 3306
+const user = process.env.DB_USER || 'root'
+
+const sequelize = new Sequelize(`${dialect}://${user}:${password}@${host}:${port}/${database}`)
 
 sequelize
     .authenticate()
